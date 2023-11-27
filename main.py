@@ -1,14 +1,17 @@
 import requests, json, re, os
+from dotenv import load_dotenv
 
+# 加载 .env 文件中的环境变量
+load_dotenv()
 session = requests.session()
 # 机场的地址
-url = os.environ.get('URL')
+url = os.getenv('URL')
 # 配置用户名（一般是邮箱）
-email = os.environ.get('EMAIL')
+email = os.getenv('EMAIL')
 # 配置用户名对应的密码 和上面的email对应上
-passwd = os.environ.get('PASSWD')
+passwd = os.getenv('PASSWD')
 # server酱
-SCKEY = os.environ.get('SCKEY')
+SCKEY = os.getenv('SCKEY')
 
 login_url = '{}/auth/login'.format(url)
 check_url = '{}/user/checkin'.format(url)
