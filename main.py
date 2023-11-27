@@ -12,7 +12,7 @@ SCKEY = os.environ.get('SCKEY')
 
 login_url = '{}/auth/login'.format(url)
 check_url = '{}/user/checkin'.format(url)
-
+info_url='{}/user/profile'.format(url)
 
 header = {
         'origin': url,
@@ -26,6 +26,10 @@ try:
     print('进行登录...')
     response = json.loads(session.post(url=login_url,headers=header,data=data).text)
     print(response['msg'])
+
+    # 获取账号名称
+    info_html = session.get(url=info_url, headers=header).text
+        
     # 进行签到
     result = json.loads(session.post(url=check_url,headers=header).text)
     print(result['msg'])
